@@ -1,0 +1,61 @@
+# Amplify Graphql SDK
+# https://aws-amplify.github.io/docs/cli/graphql?sdk=js
+
+# schema {
+# 	query: Query
+# 	#   mutation: Mutation
+# 	#   subscription: Subscription
+# }
+
+type User @model @key(fields: ["email"]) {
+	#  Generated id for a user. read-only
+	id: ID!
+    createdAt: AWSDateTime!
+
+	#  The username
+	username: String!
+
+	# Email - Used to connect to connect to cognito
+	email: String!
+
+	# is the user registered?
+	# registered: Boolean
+
+	# name: String!
+	ProfileImageUrl: String!
+	CurrentTrack: String
+
+	# SubscribedUsers: [User!]! @connection(name: "User")
+}
+
+# enum Status {
+#     DELIVERED
+#     IN_TRANSIT
+#     PENDING
+#     UNKNOWN
+# }
+
+# type Query {
+# 	#  Scan through all values of type 'User'. Use the 'after' and 'before' arguments with the 'nextToken' returned by the 'UserConnection' result to fetch pages.
+# 	allUser(after: String, first: Int): [User]
+# 	#  Get my user.
+# 	me: User
+# }
+
+
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @connection(name: "BlogPosts")
+# }
+# type Post @model {
+#   id: ID!
+#   title: String!
+#   blog: Blog @connection(name: "BlogPosts")
+#   comments: [Comment] @connection(name: "PostComments")
+# }
+# type Comment @model {
+#   id: ID!
+#   content: String
+#   post: Post @connection(name: "PostComments")
+# }

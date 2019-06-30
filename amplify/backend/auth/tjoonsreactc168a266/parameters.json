@@ -1,0 +1,76 @@
+{
+    "identityPoolName": "tjoonsreactc168a266_identitypool_c168a266",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "tjoons_c168a266_lambda_log_policy",
+    "openIdLambdaRoleName": "tjoons_c168a266_openid_lambda_role",
+    "openIdRolePolicy": "tjoons_c168a266_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "tjoons_c168a266_openid_lambda_iam_policy",
+    "openIdLogPolicy": "tjoons_c168a266_openid_lambda_log_policy",
+    "userPoolName": "tjoonsreactc168a266_userpool_c168a266",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "tjoonsc168a266_sns-role",
+    "roleExternalId": "tjoonsc168a266_role_external_id",
+    "policyName": "tjoonsc168a266-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "tjoonsc168a266_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "tjoonsc168a266_totp_lambda_role",
+    "mfaLambdaLogPolicy": "tjoonsc168a266_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "tjoonsc168a266_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "tjoonsc168a266_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "tjoonsc168a266_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "tjoonsc168a266_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "tjoonsc168a266_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "tjoonsreactc168a266",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "defaultSocial",
+    "hostedUI": true,
+    "hostedUIDomainName": "tjoons",
+    "authProvidersUserPool": [
+        "Facebook",
+        "Google"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}"
+}

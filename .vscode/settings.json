@@ -1,0 +1,30 @@
+{
+	"workbench.colorCustomizations": {
+		// Titlebar
+		"titleBar.activeBackground": "#21a2c5",
+		"titleBar.activeForeground": "#EEFFED",
+
+		// Sidebar
+		"statusBar.background": "#21a2c5",
+
+		// Sidebar
+		"activityBar.background": "#21a2c5",
+		"activityBar.foreground": "#ffffff",
+
+		// Editor:
+		"editorWarning.foreground": "#1eff0042",
+		"editorError.foreground": "#ff0000",
+
+		"editor.background": "#14192075",
+
+		"panel.background": "#111111ef",
+		"terminal.background": "#000000de"
+	},
+
+	// Workbench Theme
+	"workbench.iconTheme": "file-icons",
+	"workbench.colorTheme": "Material Theme Ocean High Contrast",
+
+	// Terminal Position
+	"workbench.panel.defaultLocation": "bottom"
+}
