@@ -12,9 +12,7 @@
         },
         "categories": {
             "auth": {
-                "tjoonsreactc168a266": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"387350052127124\",\"client_secret\":\"83a61a9456f8645214c8746708e7f534\"},{\"ProviderName\":\"Google\",\"client_id\":\"805176719914-rp6ruti2hqnc7pd3155f0296ud0biosl.apps.googleusercontent.com\",\"client_secret\":\"BGCdPZQo4hoMtJmr4Jb7L94i\"}]"
-                }
+                "tjoonsreactc168a266": {}
             }
         }
     }
