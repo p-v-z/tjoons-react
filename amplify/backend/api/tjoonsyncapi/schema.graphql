@@ -1,0 +1,124 @@
+# Amplify Graphql SDK
+# https://aws-amplify.github.io/docs/cli/graphql?sdk=js
+
+# input AuthRule {
+#     allow: AuthStrategy!
+#     ownerField: String # defaults to "owner"
+#     identityField: String # defaults to "username"
+#     groupsField: String
+#     groups: [String]
+#     operations: [ModelOperation]
+
+#     # The following arguments are deprecated. It is encouraged to use the 'operations' argument.
+#     queries: [ModelQuery]
+#     mutations: [ModelMutation]
+# }
+
+type User @model
+	@key(fields: ["email"])
+	# @auth(rules: [
+	# 		{ allow: owner }
+	# 		{ allow: groups, groups: ["everyone"], queries: [get, list] }
+	# 	]) 
+	{
+
+	# Email - Used to connect to connect to cognito
+	email: String!
+
+	#  The username
+	username: String!
+
+	#  Generated id for a user. read-only
+	createdAt: AWSDateTime!
+
+	profileImageUrl: String
+	spotifyProfile: String
+	currentTrack: String
+	# subscribed: [User]
+	# subscribers: [User]
+	isActive: Boolean
+}
+
+type Album @model {
+	owner: User!
+	title: String!
+	tracks: String
+}
+
+# input SubscribeToInput {
+#   user: User!
+# }
+
+# input SetUserActiveInput {
+# 	user: User!
+# 	isActive: Boolean!
+# }
+
+# type Mutation {
+# 	subscribeTo(input: SubscribeToInput): User
+# 	setUserActive(input: SetUserActiveInput!): User
+	# createUser(input: )
+#   createCanvas(input: CreateCanvasInput!): Canvas
+#   updateCanvas(input: UpdateCanvasInput!): Canvas
+#   deleteCanvas(input: DeleteCanvasInput!): Canvas
+# }
+
+# type Query {
+# 	listActiveUsers(): [User]
+
+#   getCanvas(id: ID!): Canvas
+#   listCanvass(filter: ModelCanvasFilterInput, limit: Int, nextToken: String): ModelCanvasConnection
+# }
+
+
+# type Subscription {
+#   onCreateCanvas: Canvas @aws_subscribe(mutations: ["createCanvas"])
+#   onUpdateCanvas: Canvas @aws_subscribe(mutations: ["updateCanvas"])
+# }
+
+# type Post @model
+# 	@searchable
+# 	@auth(
+# 		rules: [
+# 			{ allow: owner }
+# 			{ allow: groups, groups: ["everyone"], operations: [read] }
+# 		]
+# 	) {
+# 	id: ID!
+# 	title: String!
+# 	content: String!
+# 	comments: [Comment] @connection
+# }
+
+
+# type Comment @model
+# 	@auth(
+# 		rules: [
+# 			{ allow: owner }
+# 			{ allow: groups, groups: "everyone", queries: ["get", "list"] }
+# 		]
+# 	) {
+# 	id: ID!
+# 	title: String!
+# 	content: String!
+# }
+
+
+
+
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @connection(name: "BlogPosts")
+# }
+# type Post @model {
+#   id: ID!
+#   title: String!
+#   blog: Blog @connection(name: "BlogPosts")
+#   comments: [Comment] @connection(name: "PostComments")
+# }
+# type Comment @model {
+#   id: ID!
+#   content: String
+#   post: Post @connection(name: "PostComments")
+# }

@@ -17,5 +17,24 @@
                 }
             }
         }
+    },
+    "tjoons": {
+        "awscloudformation": {
+            "AuthRoleName": "tjoons-react-tjoons-20190701173715-authRole",
+            "UnauthRoleArn": "arn:aws:iam::628426305115:role/tjoons-react-tjoons-20190701173715-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::628426305115:role/tjoons-react-tjoons-20190701173715-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "tjoons-react-tjoons-20190701173715-deployment",
+            "UnauthRoleName": "tjoons-react-tjoons-20190701173715-unauthRole",
+            "StackName": "tjoons-react-tjoons-20190701173715",
+            "StackId": "arn:aws:cloudformation:eu-west-1:628426305115:stack/tjoons-react-tjoons-20190701173715/1b1c16b0-9c16-11e9-9b55-0a4c7381ba1c"
+        },
+        "categories": {
+            "auth": {
+                "tjoonsreactc168a266": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"387350052127124\",\"client_secret\":\"83a61a9456f8645214c8746708e7f534\"},{\"ProviderName\":\"Google\",\"client_id\":\"805176719914-rp6ruti2hqnc7pd3155f0296ud0biosl.apps.googleusercontent.com\",\"client_secret\":\"BGCdPZQo4hoMtJmr4Jb7L94i\"}]"
+                }
+            }
+        }
     }
 }

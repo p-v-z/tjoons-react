@@ -8,12 +8,11 @@ class User extends React.Component {
 	render() {
 		const items = this.props.data.listUsers.items;
 
-		return items.map(post => {
+		return items.map(user => {
 			return (
-				<div>
-					<h1>{post.id}</h1>
-					<p>{post.username}</p>
-					{/* <time dateTime={post.createdAt}>{new Date(post.createdAt).toDateString()}</time> */}
+				<div key={user.username}>
+					<p>{user.username} {user.email} {user.createdAt}</p>
+					{/* <time dateTime={user.createdAt}>{new Date(user.createdAt).toDateString()}</time> */}
 					<br />
 				</div>
 			);

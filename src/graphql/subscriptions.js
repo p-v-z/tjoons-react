@@ -3,34 +3,85 @@
 
 export const onCreateUser = `subscription OnCreateUser {
   onCreateUser {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
   }
 }
 `;
 export const onUpdateUser = `subscription OnUpdateUser {
   onUpdateUser {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
   }
 }
 `;
 export const onDeleteUser = `subscription OnDeleteUser {
   onDeleteUser {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
+  }
+}
+`;
+export const onCreateAlbum = `subscription OnCreateAlbum {
+  onCreateAlbum {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
+  }
+}
+`;
+export const onUpdateAlbum = `subscription OnUpdateAlbum {
+  onUpdateAlbum {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
+  }
+}
+`;
+export const onDeleteAlbum = `subscription OnDeleteAlbum {
+  onDeleteAlbum {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
   }
 }
 `;

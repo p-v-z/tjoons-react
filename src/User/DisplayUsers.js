@@ -18,9 +18,9 @@ class DisplayUsers extends React.Component {
 				if (!subscriptionData.data) return prev;
 				const newPostData = subscriptionData.data.onCreateUser;
 				return Object.assign({}, prev, {
-					listPosts: {
-						...prev.listPosts,
-						items: [...prev.listPosts.items, newPostData]
+					listUsers: {
+						...prev.listUsers,
+						items: [...prev.listUsers.items, newPostData]
 					}
 				});
 			}
@@ -34,7 +34,6 @@ class DisplayUsers extends React.Component {
 					{({ loading, data, error, subscribeToMore }) => {
 						if (loading) return <p>loading...</p>;
 						if (error) return <p>{error.message}</p>;
-
 						return <UserList data={data} subscribeToMore={() => this.subsCribeNewPosts(subscribeToMore)} />;
 					}}
 				</Query>

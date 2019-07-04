@@ -3,34 +3,85 @@
 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
   }
 }
 `;
 export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
   }
 }
 `;
 export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
   deleteUser(input: $input) {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
+  }
+}
+`;
+export const createAlbum = `mutation CreateAlbum($input: CreateAlbumInput!) {
+  createAlbum(input: $input) {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
+  }
+}
+`;
+export const updateAlbum = `mutation UpdateAlbum($input: UpdateAlbumInput!) {
+  updateAlbum(input: $input) {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
+  }
+}
+`;
+export const deleteAlbum = `mutation DeleteAlbum($input: DeleteAlbumInput!) {
+  deleteAlbum(input: $input) {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
   }
 }
 `;

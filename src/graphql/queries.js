@@ -3,12 +3,13 @@
 
 export const getUser = `query GetUser($email: String!) {
   getUser(email: $email) {
-    id
-    createdAt
-    username
     email
-    ProfileImageUrl
-    CurrentTrack
+    username
+    createdAt
+    profileImageUrl
+    spotifyProfile
+    currentTrack
+    isActive
   }
 }
 `;
@@ -25,12 +26,52 @@ export const listUsers = `query ListUsers(
     nextToken: $nextToken
   ) {
     items {
-      id
-      createdAt
-      username
       email
-      ProfileImageUrl
-      CurrentTrack
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    nextToken
+  }
+}
+`;
+export const getAlbum = `query GetAlbum($id: ID!) {
+  getAlbum(id: $id) {
+    owner {
+      email
+      username
+      createdAt
+      profileImageUrl
+      spotifyProfile
+      currentTrack
+      isActive
+    }
+    title
+    tracks
+  }
+}
+`;
+export const listAlbums = `query ListAlbums(
+  $filter: ModelAlbumFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAlbums(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      owner {
+        email
+        username
+        createdAt
+        profileImageUrl
+        spotifyProfile
+        currentTrack
+        isActive
+      }
+      title
+      tracks
     }
     nextToken
   }

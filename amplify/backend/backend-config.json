@@ -1,6 +1,6 @@
 {
 	"api": {
-		"tjoonsapisync": {
+		"tjoonsyncapi": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
@@ -13,5 +13,6 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
-	}
+	},
+	"function": {}
 }

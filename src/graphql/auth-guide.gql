@@ -1,0 +1,152 @@
+# Amplify Graphql SDK
+# https://aws-amplify.github.io/docs/cli/graphql?sdk=js
+
+# Definition
+# When applied to a type, augments the application with
+# owner and group-based authorization rules.
+directive @auth(rules: [AuthRule!]!) on OBJECT, FIELD_DEFINITION
+input AuthRule {
+    allow: AuthStrategy!
+    ownerField: String # defaults to "owner"
+    identityField: String # defaults to "username"
+    groupsField: String
+    groups: [String]
+    operations: [ModelOperation]
+
+    # The following arguments are deprecated. It is encouraged to use the 'operations' argument.
+    queries: [ModelQuery]
+    mutations: [ModelMutation]
+}
+enum AuthStrategy { owner groups }
+enum ModelOperation { create update delete read }
+
+# The following objects are deprecated. It is encouraged to use ModelOperations.
+enum ModelQuery { get list }
+enum ModelMutation { create update delete }
+
+# ====================
+# ownerField
+# ====================
+Owner authorization specifies that a user can access an object. To do so, each object has an ownerField (by default “owner”) that stores ownership information and is verified in various ways during resolver execution.
+
+You can use the operations argument to specify which operations are augmented as follows:
+
+read: If the record’s owner is not the same as the logged in user (via $ctx.identity.username), throw $util.unauthorized() in any resolver that returns an object of this type.
+create: Inject the logged in user’s $ctx.identity.username as the ownerField automatically.
+update: Add conditional update that checks the stored ownerField is the same as $ctx.identity.username.
+delete: Add conditional update that checks the stored ownerField is the same as $ctx.identity.username.
+
+https://stackoverflow.com/questions/51230159/simple-getitem-with-ctx-identity-username-returns-null
+$ctx <- Resolver context object
+
+$ctx.identity.cognitoIdentityId
+$ctx.identity.claims.get("cognito:groups")
+
+# ====================
+# Give owner permissions
+# ====================
+# The simplest case
+type Post @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  title: String!
+}
+
+# The long form way
+type Post 
+  @model 
+  @auth(
+    rules: [
+      {allow: owner, ownerField: "owner", operations: [create, update, delete, read]},
+    ]) 
+{
+  id: ID!
+  title: String!
+  owner: String
+}
+
+# ====================
+# Specified field
+# ====================
+type Draft 
+    @model 
+    @auth(rules: [
+        # Defaults to use the "owner" field.
+        { allow: owner },
+        # Authorize the update mutation and both queries. Use `queries: null` to disable auth for queries.
+        { allow: owner, ownerField: "editors", operations: [update] }
+
+        # Admin users can access any operation.
+        { allow: groups, groups: ["Admin"] }
+        # With dynamic group authorization, each record contains an attribute specifying what groups should be 
+        # able to access it. Use the groupsField argument to specify which attribute in the underlying data store 
+        # holds this group information. To specify that a single group should have access, use a field of type String. 
+        # To specify that multiple groups should have access, use a field of type [String].
+
+        # Each record may specify which groups may read them.
+        { allow: groups, groupsField: "groupsCanAccess", operations: [read] }
+
+    ]) {
+    id: ID!
+    title: String!
+    content: String
+    owner: String
+    editors: [String]!
+    groupsCanAccess: [String]!
+}
+
+# ====================
+# Field Level Auth
+# ====================
+type Employee @model {
+    id: ID!
+    email: String
+
+    # Owners & members of the "Admin" group may read employee salaries.
+    # Only members of the "Admin" group may create an employee with a salary
+    # or update a salary.
+    salary: String 
+      @auth(rules: [
+        { allow: owner, ownerField: "username", operations: [read] },
+        { allow: groups, groups: ["Admin"], operations: [create, update, read] }
+      ])
+}
+
+# --------> Generated
+
+mutation CreateDraft {
+    createDraft(input: { title: "A new draft" }) {
+        id
+        title
+        owner
+        editors
+    }
+}
+
+mutation CreateDraft {
+    createDraft(
+        input: { 
+            title: "A new draft", 
+            editors: [] 
+        }
+    ) {
+        id
+        title
+        owner
+        editors
+    }
+}
+
+mutation CreateDraft {
+    createDraft(
+        input: { 
+            title: "A new draft", 
+            editors: ["someuser@my-domain.com"],
+            owner: null
+        }
+    ) {
+        id
+        title
+        owner
+        editors
+    }
+}
